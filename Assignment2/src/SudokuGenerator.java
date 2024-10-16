@@ -1,17 +1,15 @@
 import java.util.Random;
 
 /**
- * Bla bla text
- *
+ * A class representing a Sudoku generator
  */
 public class SudokuGenerator {
 
 
     /**
-     * Bla bla text
-     *
+     *Creates and prints a new Sudoku game.
      */
-    public void createNewSudokuGame() {
+    protected void createNewSudokuGame() {
         int[][] gameBoard = getEmptyBoard();
         randomlyInitiallyPopulate(gameBoard);
         populateBoard(gameBoard);
@@ -22,10 +20,10 @@ public class SudokuGenerator {
 
 
     /**
-     * Bla bla text
-     *
+     * Returns an empty Sudoku board
+     * @return int[][] - A Sudoku board
      */
-    public int[][] getEmptyBoard() {
+    private int[][] getEmptyBoard() {
         return new int[][]{
                 {0,0,0,0},
                 {0,0,0,0},
@@ -35,10 +33,10 @@ public class SudokuGenerator {
     }
 
     /**
-     * Bla bla text
-     *
+     * Replaces the complete Sudoku with zeros, representing empty spaces that the user fills in.
+     * @param board - The Sudoku board
      */
-    public void replaceNumbersWithZeros(int[][] board) {
+    private void replaceNumbersWithZeros(int[][] board) {
         Random random = new Random();
         for (int i = 0; i < board.length; i++) {
             int first = random.nextInt(4);
@@ -51,10 +49,10 @@ public class SudokuGenerator {
     }
 
     /**
-     * Bla bla text
-     *
+     * Randomly places three numbers on the board, used before the total population of the board. To get more randomness.
+     * @param board - The sudoku board
      */
-    public void randomlyInitiallyPopulate(int[][] board) {
+    private void randomlyInitiallyPopulate(int[][] board) {
         Random random = new Random();
 
         for (int i = 0; i < 3; i++) {
@@ -70,10 +68,10 @@ public class SudokuGenerator {
     }
 
     /**
-     * Bla bla text
-     *
+     * Prints the board in the console for the user
+     * @param board - The sudoku board
      */
-    public void printBoard(int[][] board) {
+    private void printBoard(int[][] board) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
                 System.out.print(board[i][j]);
@@ -92,8 +90,11 @@ public class SudokuGenerator {
     }
 
     /**
-     * Bla bla text
-     *
+     * Checks if the number is already in the row, since that is not allowed
+     * @param board - The sudoku board
+     * @param number - The number to be placed on the board
+     * @param row - The row that the number will be placed in
+     * @return boolean - The result of the check
      */
     private boolean isNumberInRow(int[][] board, int number, int row) {
         for (int i = 0; i < 4; i++) {
@@ -105,8 +106,11 @@ public class SudokuGenerator {
     }
 
     /**
-     * Bla bla text
-     *
+     * Checks if the number is already in the column, since that is not allowed.
+     *  @param board - The sudoku board
+     *  @param number - The number to be placed on the board
+     *  @param column - The column that the number will be placed in
+     *  @return boolean - The result of the check
      */
     private boolean isNumberInColumn(int[][] board, int number, int column) {
         for (int i = 0; i < 4; i++) {
@@ -118,8 +122,13 @@ public class SudokuGenerator {
     }
 
     /**
-     * Bla bla text
-     *
+     * Checks if the number is in the 4*4 grid, by calculating the position of the upper left square in the grid
+     * and then performs the check from there in a nested for loop.
+     *  @param board - The sudoku board
+     *  @param number - The number to be placed on the board
+     *  @param row - The row that the number will be placed in
+     *  @param column - The column that the number will be placed in
+     *  @return boolean - The result of the check
      */
     private boolean isNumberInGrid(int[][] board, int number, int row, int column) {
         int localBoxRow = row - row % 2;
@@ -136,8 +145,12 @@ public class SudokuGenerator {
     }
 
     /**
-     * Bla bla text
-     *
+     * Checks if the placement is valid, and not violating the Sudoku rules (not in the same row, column or square).
+     *  @param board - The sudoku board
+     *  @param number - The number to be placed on the board
+     *  @param row - The row that the number will be placed in
+     *  @param column - The column that the number will be placed in
+     *  @return boolean - The result of the check
      */
     private boolean isValidPlacement(int[][] board, int number, int row, int column) {
         return !isNumberInRow(board,number,row) &&
@@ -147,8 +160,11 @@ public class SudokuGenerator {
 
 
     /**
-     * Bla bla text
-     *
+     * A recursive method that populates the board with numbers according to the rules. If the placement is valid,
+     * it continues to do the population process on step at a time. If placement is invalid, it starts backtracking
+     * and undo the previous step so that it can try again and choose a different path since the current was not successful.
+     * @param board - The sudoku board
+     * @return boolean - The result of the recursive method
      */
     private boolean populateBoard(int[][] board) {
         for (int row = 0; row < 4; row++) {
