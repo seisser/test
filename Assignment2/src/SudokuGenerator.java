@@ -1,7 +1,10 @@
 import java.util.Random;
 
 /**
- * A class representing a Sudoku generator
+ * A class representing a Sudoku generator.
+ * In short: A fully completed Sudoku game is generated, so that I know that the board is solvable and correct
+ * according to the rules. Then the majority of the numbers are being replaced with zeros (representing empty spaces
+ * that the user should fill in). At last, it is presented for the user/player.
  */
 public class SudokuGenerator {
 
@@ -33,7 +36,7 @@ public class SudokuGenerator {
     }
 
     /**
-     * Replaces the complete Sudoku with zeros, representing empty spaces that the user fills in.
+     * Replaces some of the numbers in the complete Sudoku with zeros, representing empty spaces that the user fills in.
      * @param board - The Sudoku board
      */
     private void replaceNumbersWithZeros(int[][] board) {
