@@ -1,7 +1,7 @@
 public class BaseIdata implements IIdata{
 
     protected MainWork mainWorkEnum;
-    protected String mainWorkString;
+    protected String departmentString;
 
     @Override
     public MainWork getMainWork() {
@@ -10,6 +10,7 @@ public class BaseIdata implements IIdata{
 
     @Override
     public String getDepartment() {
-        return mainWorkString;
+        return departmentString;
     }
 }
+

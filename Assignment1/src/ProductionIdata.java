@@ -2,6 +2,6 @@ public class ProductionIdata extends BaseIdata{
 
     ProductionIdata() {
         mainWorkEnum = MainWork.Paper;
-        mainWorkString = "Production";
+        departmentString = "Production";
     }
 }
